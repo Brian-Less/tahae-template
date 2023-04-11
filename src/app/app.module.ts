@@ -7,6 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HelperModule } from "@helper";
 import { HelperMockApiModule } from "@helper/lib/mock-api";
 import { mockApiServices } from "app/mock-api";
+import { LayoutModule } from "app/layout/layout.module";
+import { appConfig } from "app/core/config/app.config";
+import { HelperConfigModule } from "@helper/services/config";
 
 @NgModule({
   declarations: [
@@ -18,8 +21,10 @@ import { mockApiServices } from "app/mock-api";
     AppRoutingModule,
 
     HelperModule,
-    HelperMockApiModule.forRoot(mockApiServices)
+    HelperConfigModule.forRoot(appConfig),
+    HelperMockApiModule.forRoot(mockApiServices),
     
+    LayoutModule
   ],
   providers: [],
   bootstrap: [

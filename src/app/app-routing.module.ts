@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ExtraOptions, PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AppComponent } from "./app.component";
+import { LayoutComponent } from "app/layout/layout.component";
 
 const routerConfig: ExtraOptions = {
   preloadingStrategy       : PreloadAllModules,
@@ -8,9 +9,20 @@ const routerConfig: ExtraOptions = {
 };
 
 const appRoutes: Routes = [
+  
+  {path: '', pathMatch : 'full', redirectTo: 'example'},
+
   {
     path: '',
-    component: AppComponent
+    component: LayoutComponent,
+    data: {
+      layout: 'empty'
+    },
+    children: [
+      {
+        path: 'example', loadChildren: () => import('app/modules/example/test-api/test-api.module').then(m => m.TestApiModule)
+      }
+    ]
   }
 ];
 

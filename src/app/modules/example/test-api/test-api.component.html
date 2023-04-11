@@ -1,0 +1,56 @@
+<div class="flex flex-col bg-gray-200 rounded-lg p-6 m-4 w-full">
+    <div class="prose prose-sm">
+        <h2>ทดสอบ Mock API</h2>
+        ค่าหน่วงเวลา 2000ms 
+    </div>
+
+    <div class="flex flex-row gap-6 my-4 w-full justify-between">
+        <div class="flex">
+            <span class="bg-green-600 text-white rounded p-2">GET: {{ pathName }}</span>
+        </div>
+        <div class="flex">
+            <button mat-stroked-button color="basic" (click)="getUsers()">Load
+                <div *ngIf="loading" class="inline-block h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status"></div>
+            </button>
+        </div>
+
+    </div>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> Weight </th>
+          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef> Symbol </th>
+          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+        <ng-container>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </ng-container>
+        
+      </table>
+      
+</div>

@@ -23,7 +23,7 @@ import { HelperConfigModule } from "@helper/services/config";
     HelperModule,
     HelperConfigModule.forRoot(appConfig),
     HelperMockApiModule.forRoot(mockApiServices),
-    
+
     LayoutModule
   ],
   providers: [],

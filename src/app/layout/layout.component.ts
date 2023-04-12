@@ -1,9 +1,9 @@
-import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { HelperConfigService } from "@helper/services/config";
 import { AppConfig } from "app/core/config/app.config";
 import { Layout } from "app/layout/layout.types";
-import { Subject, takeUntil } from "rxjs";
+import { Subject, filter, takeUntil } from "rxjs";
 
 @Component({
     selector: 'layout',
@@ -11,7 +11,7 @@ import { Subject, takeUntil } from "rxjs";
     styleUrls: ['./layout.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class LayoutComponent implements OnDestroy {
+export class LayoutComponent implements OnInit, OnDestroy {
 
     config!: AppConfig;
     layout!: Layout;
@@ -20,14 +20,25 @@ export class LayoutComponent implements OnDestroy {
 
     constructor(
         private _activatedRoute: ActivatedRoute,
-        private _helperConfigService: HelperConfigService
-        ) {
+        private _helperConfigService: HelperConfigService,
+        private _router: Router
+    ) {
+    }
+
+    ngOnInit(): void {
         this._helperConfigService.config$
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((config: AppConfig) => {
                 this.config = config;
                 this._updateLayout();
             });
+
+        this._router.events.pipe(
+            filter(event => event instanceof NavigationEnd),
+            takeUntil(this._unsubscribeAll)
+        ).subscribe(() => {
+            this._updateLayout();
+        });
     }
 
     ngOnDestroy(): void {

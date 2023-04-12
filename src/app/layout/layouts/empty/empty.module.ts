@@ -8,15 +8,14 @@ import { HttpClientModule } from "@angular/common/http";
     declarations: [
         EmptyLayoutComponent
     ],
-    imports     : [
+    imports: [
         HttpClientModule,
         RouterModule,
         SharedModule
     ],
-    exports     : [
+    exports: [
         EmptyLayoutComponent
     ]
 })
-export class EmptyLayoutModule
-{
+export class EmptyLayoutModule {
 }

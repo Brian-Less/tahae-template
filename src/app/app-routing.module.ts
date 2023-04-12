@@ -20,6 +20,19 @@ const appRoutes: Routes = [
     },
     children: [
       {
+        path: 'home', loadChildren: () => import('app/modules/example/test-api/test-api.module').then(m => m.TestApiModule)
+      }
+    ]
+  },
+
+  {
+    path: '',
+    component: LayoutComponent,
+    data: {
+      layout: 'classic'
+    },
+    children: [
+      {
         path: 'example', loadChildren: () => import('app/modules/example/test-api/test-api.module').then(m => m.TestApiModule)
       }
     ]

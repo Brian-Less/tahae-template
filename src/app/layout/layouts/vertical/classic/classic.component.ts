@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { CoreNavigationItem } from "app/core/components/navigation/navigation.types";
 import { Subject } from "rxjs";
 
 @Component({
@@ -9,6 +10,8 @@ import { Subject } from "rxjs";
 export class ClassicLayoutComponent {
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
+  navigation: CoreNavigationItem[] = [];
+  
   /**
    * Constructor
    */

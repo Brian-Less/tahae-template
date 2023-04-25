@@ -1,0 +1,33 @@
+<div class="core-vertical-navigation-wrapper">
+
+    <!-- Content -->
+    <div
+        class="core-vertical-navigation-content"
+        #navigationContent>
+
+        <!-- Content header -->
+        <div class="core-vertical-navigation-content-header">
+            <ng-content select="[fuseVerticalNavigationContentHeader]"></ng-content>
+        </div>
+
+        <!-- Items -->
+        <ng-container *ngFor="let item of navigation; trackBy: trackByFn">
+
+            <!-- Skip the hidden items -->
+            <ng-container *ngIf="(item.hidden && !item.hidden(item)) || !item.hidden">
+
+                <!-- Item each type ... -->
+
+
+            </ng-container>
+
+        </ng-container>
+
+        <!-- Content footer -->
+        <div class="core-vertical-navigation-content-footer">
+            <ng-content select="[fuseVerticalNavigationContentFooter]"></ng-content>
+        </div>
+
+    </div>
+
+</div>

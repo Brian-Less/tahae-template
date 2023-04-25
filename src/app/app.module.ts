@@ -10,6 +10,7 @@ import { mockApiServices } from "app/mock-api";
 import { LayoutModule } from "app/layout/layout.module";
 import { appConfig } from "app/core/config/app.config";
 import { HelperConfigModule } from "@helper/services/config";
+import { CoreModule } from "app/core/core.module";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,8 @@ import { HelperConfigModule } from "@helper/services/config";
     HelperModule,
     HelperConfigModule.forRoot(appConfig),
     HelperMockApiModule.forRoot(mockApiServices),
+
+    CoreModule,
 
     LayoutModule
   ],
